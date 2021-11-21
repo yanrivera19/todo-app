@@ -73,38 +73,15 @@ function displayOnPage() {
 
 console.log(localStorage);
 function deleteChecked() {
-	let list;
-	if(localStorage.getItem("list") === null) {
-		list = [];
-	} else {
-		list = JSON.parse(localStorage.getItem("list"));
-	};
-
 	const checkBoxes = document.getElementsByClassName("delete-box");
 	const listTexts = document.getElementsByClassName("list-group-item");
 	let checkedCheckBox = checkBoxes.checked;
 	for (let i = 0; i < checkBoxes.length; i++) {
 		if(checkBoxes[i].checked) {
-		let rmv = listTexts[i];	
-		rmv.remove();
-		removeFromStorage(rmv);
+		let list = JSON.parse(localStorage.getItem("list"));
+		list.splice([i], 1);
+		localStorage.setItem("list", JSON.stringify(list));
+		listTexts[i].remove();	
 		}		
 	};	 
 };
-
-//function indended to remove elements from localstorage (Don't know how to remove
-//individual items that I select from localstorage). 
-function removeFromStorage(task) {
-	let list;
-	if(localStorage.getItem("list") === null) {
-		list = [];
-	} else {
-		list = JSON.parse(localStorage.getItem("list"));
-		console.log(list)
-	};
-	
-	list.splice(list.indexOf(task), 1);
-	localStorage.setItem("list", JSON.stringify(list));
-}
-
-
