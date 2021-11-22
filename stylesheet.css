@@ -1,0 +1,37 @@
+body {
+	background-image: linear-gradient(to right, #ffafbd, #ffc3a0);
+}
+
+#addBtn {
+	margin-right: 10px;
+}
+
+h1 {
+	font-size: 70px;
+    color: white; 
+    font-family: 'Poetsen One', sans-serif;
+    text-shadow: 1px 1px #fe4902, 
+                 3px 3px #fe4902, 
+                 4px 4px #fe4902;
+}
+
+#taskList {
+	width: 90%;
+}
+
+@media only screen and (min-width: 768px) {
+	.row {
+		margin-right: 50px !important;
+		margin-left: 50px !important;
+	}
+
+	#taskList {
+		margin-right: 60px !important;
+		margin-left: 60px !important;
+	}
+
+	h1 {
+		font-size: 110px;
+	}
+}
+
