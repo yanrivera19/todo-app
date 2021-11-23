@@ -47,13 +47,13 @@ function addToList(event) {
 		listItm.style.marginBottom = "10px";
 		taskList.appendChild(listItm);
 
-		let inputCheckBox = document.createElement("INPUT");
+		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input";
 		inputCheckBox.type = "checkbox"
 		inputCheckBox.style.marginRight = "10px";
 		
 		inputValue = document.getElementById("inputTask").value;	
-		let inputValueContent = document.createTextNode(inputValue);
+		const inputValueContent = document.createTextNode(inputValue);
 
 	  	listItm.appendChild(inputCheckBox);
 	  	listItm.appendChild(inputValueContent);
@@ -76,20 +76,20 @@ function saveTasks(task) {
 };
 
 function displayOnPage() {
-	let list = JSON.parse(localStorage.getItem("list"));
+	const list = JSON.parse(localStorage.getItem("list"));
 
 	list.forEach(function(task) {
-	let listItm = document.createElement("LI");
+	const listItm = document.createElement("LI");
 	listItm.className = "list-group-item";
 	listItm.style.marginBottom = "10px";
 	taskList.appendChild(listItm);
 
-	let inputCheckBox = document.createElement("INPUT");
+	const inputCheckBox = document.createElement("INPUT");
 	inputCheckBox.className = "delete-box form-check-input mr-3";
 	inputCheckBox.type = "checkbox"
 	inputCheckBox.style.marginRight = "10px";
 	
-	let inputValueContent = document.createTextNode(task);
+	const inputValueContent = document.createTextNode(task);
 
   	listItm.appendChild(inputCheckBox);
   	listItm.appendChild(inputValueContent);
@@ -102,7 +102,7 @@ function deleteChecked() {
 	const checkedCheckBox = checkBoxes.checked;
 	for (let i = 0; i < checkBoxes.length; i++) {
 		if(checkBoxes[i].checked) {
-		let list = JSON.parse(localStorage.getItem("list"));
+		const list = JSON.parse(localStorage.getItem("list"));
 		list.splice([i], 1);
 		localStorage.setItem("list", JSON.stringify(list));
 		listTexts[i].remove();	
