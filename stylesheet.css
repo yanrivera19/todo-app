@@ -19,6 +19,15 @@ h1 {
 	background-color: red;
 }
 
+.delete-box {
+	margin-right: 10px;
+}
+
+.list-group-item {
+	margin-bottom: 10px;
+
+}
+
 #taskList {
 	font-family: 'Polka B', sans-serif;
 	width: 90%;

@@ -44,13 +44,11 @@ function addToList(event) {
   	} else {
 		const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";
-		listItm.style.marginBottom = "10px";
 		taskList.appendChild(listItm);
 
 		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input";
 		inputCheckBox.type = "checkbox"
-		inputCheckBox.style.marginRight = "10px";
 		
 		inputValue = document.getElementById("inputTask").value;	
 		const inputValueContent = document.createTextNode(inputValue);
@@ -81,13 +79,11 @@ function displayOnPage() {
 	list.forEach(function(task) {
 	const listItm = document.createElement("LI");
 	listItm.className = "list-group-item";
-	listItm.style.marginBottom = "10px";
 	taskList.appendChild(listItm);
 
 	const inputCheckBox = document.createElement("INPUT");
 	inputCheckBox.className = "delete-box form-check-input mr-3";
 	inputCheckBox.type = "checkbox"
-	inputCheckBox.style.marginRight = "10px";
 	
 	const inputValueContent = document.createTextNode(task);
 
