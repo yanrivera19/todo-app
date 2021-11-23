@@ -38,7 +38,7 @@ displayOnPage();
 function addToList(event) {
 	event.preventDefault();
 	inputValue = document.getElementById("inputTask").value;	
-	if (inputValue == "" || inputValue == "null") {
+	if (inputValue === "" || inputValue === "null") {
     	alert("Enter a task");
     	return false;
   	} else {
