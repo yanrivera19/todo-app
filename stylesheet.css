@@ -16,6 +16,7 @@ h1 {
 }
 
 #taskList {
+	font-family: 'Polka B', sans-serif;
 	width: 90%;
 }
 
@@ -28,6 +29,7 @@ h1 {
 	#taskList {
 		margin-right: 60px !important;
 		margin-left: 60px !important;
+		font-size: 25px !important;
 	}
 
 	h1 {
