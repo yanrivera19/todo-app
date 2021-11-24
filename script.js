@@ -37,7 +37,9 @@ displayOnPage();
 
 function addToList(event) {
 	event.preventDefault();
+	
 	inputValue = document.getElementById("inputTask").value;	
+	
 	if (inputValue === "" || inputValue === "null") {
     	alert("Enter a task");
     	return false;
@@ -45,17 +47,13 @@ function addToList(event) {
 		const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";
 		taskList.appendChild(listItm);
-
 		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input";
 		inputCheckBox.type = "checkbox"
-		
 		inputValue = document.getElementById("inputTask").value;	
 		const inputValueContent = document.createTextNode(inputValue);
-
 	  	listItm.appendChild(inputCheckBox);
 	  	listItm.appendChild(inputValueContent);
-
 	  	saveTasks(inputValue);
 	  	document.getElementById("inputTask").value = ""; 	  	
   	} 
@@ -67,8 +65,8 @@ function saveTasks(task) {
 		list = [];
 	} else {
 		list = JSON.parse(localStorage.getItem("list"));
-	};
-
+	};	
+	
 	list.push(task);
 	localStorage.setItem("list", JSON.stringify(list));
 };
@@ -80,13 +78,10 @@ function displayOnPage() {
 	const listItm = document.createElement("LI");
 	listItm.className = "list-group-item";
 	taskList.appendChild(listItm);
-
 	const inputCheckBox = document.createElement("INPUT");
 	inputCheckBox.className = "delete-box form-check-input mr-3";
 	inputCheckBox.type = "checkbox"
-	
 	const inputValueContent = document.createTextNode(task);
-
   	listItm.appendChild(inputCheckBox);
   	listItm.appendChild(inputValueContent);
 	});
@@ -95,13 +90,13 @@ function displayOnPage() {
 function deleteChecked() {
 	const checkBoxes = document.getElementsByClassName("delete-box");
 	const listTexts = document.getElementsByClassName("list-group-item");
-	const checkedCheckBox = checkBoxes.checked;
+
 	for (let i = 0; i < checkBoxes.length; i++) {
 		if(checkBoxes[i].checked) {
-		const list = JSON.parse(localStorage.getItem("list"));
-		list.splice([i], 1);
-		localStorage.setItem("list", JSON.stringify(list));
-		listTexts[i].remove();	
+			const list = JSON.parse(localStorage.getItem("list"));
+			list.splice([i], 1);
+			localStorage.setItem("list", JSON.stringify(list));
+			listTexts[i].remove();	
 		}		
 	}	 
 };

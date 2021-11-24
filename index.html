@@ -23,9 +23,9 @@
 		
 		<p id="dispDate"></p>
 		
-		<form id="writeTask" name="form1" class="row mx-2" onsubmit=" addToList(event)" required>	
+		<form id="writeTask" name="form1" class="row mx-2" onkeydown="return event.key != 'Enter';"required>
 			<div class="mb-2">		
-				<input type="text" class="form-control fs-4" name="ftask" id="inputTask" placeholder="Add task..." autocomplete="off">					
+				<input type="text" class="form-control fs-4" name="ftask" id="inputTask"placeholder="Add task..." autocomplete="off">	
 			</div>
 			
 			<div class="d-flex justify-content-end">
