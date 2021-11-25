@@ -38,7 +38,7 @@ as an array and, with the use of the splice method, remove the current checkbox 
 into it, and finally remove the checkbox from the UI using the the remove method.
 */
 
-let inputValue = document.getElementById("inputtodo").value;
+let inputValue = document.getElementById("inputTodo").value;
 let todoList = document.getElementById("todoList");
 
 const createList = (todos) => {
@@ -76,7 +76,7 @@ displayOnPage();
 function addToList(event) {
 	event.preventDefault();
 	
-	inputValue = document.getElementById("inputtodo").value;	
+	inputValue = document.getElementById("inputTodo").value;	
 	
 	if (inputValue === "" || inputValue === "null") {
     	alert("Enter a todo");
@@ -88,12 +88,12 @@ function addToList(event) {
 		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input";
 		inputCheckBox.type = "checkbox"
-		inputValue = document.getElementById("inputtodo").value;	
+		inputValue = document.getElementById("inputTodo").value;	
 		const inputValueContent = document.createTextNode(inputValue);
 	  	listItm.appendChild(inputCheckBox);
 	  	listItm.appendChild(inputValueContent);
 	  	saveTodosLocalstorage(inputValue);
-	  	document.getElementById("inputtodo").value = ""; 	  	
+	  	document.getElementById("inputTodo").value = ""; 	  	
   	} 
 };
 
@@ -135,6 +135,6 @@ function deleteChecked() {
 			list.splice([i], 1);
 			localStorage.setItem("list", JSON.stringify(list));
 			listTexts[i].remove();	
-		};		
-	};	 
+		}		
+	}	 
 };
