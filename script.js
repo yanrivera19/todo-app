@@ -41,10 +41,6 @@ into it, and finally remove the checkbox from the UI using the the remove method
 let inputValue = document.getElementById("inputtodo").value;
 let todoList = document.getElementById("todoList");
 
-/* 
-
-*/
-
 const createList = (todos) => {
     todos.forEach(todo => {        
 	    const listItm = document.createElement("LI");
@@ -139,6 +135,6 @@ function deleteChecked() {
 			list.splice([i], 1);
 			localStorage.setItem("list", JSON.stringify(list));
 			listTexts[i].remove();	
-		}		
-	}	 
+		};		
+	};	 
 };
