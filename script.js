@@ -4,14 +4,14 @@ ToDo App
 Step 1: Select the input box by its id name to retrieve any value that gets submitted in it, and
 select the <ul> list from the HTML file by its id name. The todos will be added to and displayed on
 this <ul>.
-Step 2: Create a function expression called createList that takes in "todos" as its parameter. 
-This function will create a set of elements for each "todo" in the API (JSON Placeholder) that will be fetched in the next function. The parameter 
-"todos" refers to the response data that you receive when fetching the API if there are no errors in the request. When this function gets executed, it will 
-display on the page load these elements with the response data in them.
-Step 3: Create a function called getTodos that will fetch the API using axios if the array in the localstorage is null or empty. What this means is that, on page load,
-if the array in the localstorage is null or empty, it will fetch the API to get the "todos" resources from it, and if there are no errors, the response of the "get" method 
+Step 2: Create a function called getTodos that will fetch the API using axios if the array in the localstorage is null or empty. What this means is that, on page load,
+if the array in the localstorage is null, it will fetch the API to get the "todos" resources from it, and if there are no errors, the response of the "get" method 
 used will call the createList function previously defined with the response date in its parameter. If the previous condition is not met, the function will call the 
 displayOnPage function, that will display the values stored in the localstorage inside of the <ul>. Then, call this function (getTodos).
+Step 3: Create a function expression called createList that takes in "todos" as its parameter. 
+This function will create a set of elements for each "todo" in the API (JSON Placeholder). The parameter 
+"todos" refers to the response data that you receive when making a "get" request to the API if there are no errors in the request. When this function gets executed, it will 
+display on the page load these elements with the response data that we want in them ("title" property). It will also save the response data that we want in the localstorage.
 Step 4: Create a function called addToList that creates a set of elements on which the todos submitted on the input 
 box will be displayed. This function gets executed whenever an input is submitted, and takes in an event as its parameter.
 It will first check if the input submitted has a valid value. If it doesn't have one, it will display an alert message asking the user
@@ -39,7 +39,26 @@ into it, and finally remove the checkbox from the UI using the the remove method
 let inputValue = document.getElementById("inputTodo").value;
 let todoList = document.getElementById("todoList");
 
+const getTodos = () => {
+	let arrayTodos = JSON.parse(localStorage.getItem("list"));	
+
+	if(arrayTodos === null) {
+	    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+	        .then(response => {
+	            const todos = response.data;
+	            createList(todos);
+	        })
+	        .catch(error => console.error(error));
+    } else {
+    	displayOnPage();
+    };  
+};
+
+getTodos();
+
 const createList = (todos) => {
+	let list = [];
+
     todos.forEach(todo => {        
 	    const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";		
@@ -50,34 +69,17 @@ const createList = (todos) => {
 		listItm.appendChild(inputCheckBox);
 		listItm.appendChild(inputValueContent);
 	    todoList.appendChild(listItm);
+	    list.push(todo.title);	    
     });
+    localStorage.setItem("list", JSON.stringify(list));
 };
-
-const getTodos = () => {
-	let arrayTodos = JSON.parse(localStorage.getItem("list"));
-
-	if(arrayTodos === null || arrayTodos.length === 0) {
-	    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
-	        .then(response => {
-	        	console.log(response);
-	            const todos = response.data;
-	            console.log(`GET list todos`, todos);
-	            createList(todos);
-	        })
-	        .catch(error => console.error(error));
-    } else {
-    	displayOnPage();
-    }
-};
-
-getTodos();
 
 function addToList(event) {
 	event.preventDefault();
 	
 	inputValue = document.getElementById("inputTodo").value;	
 	
-	if(inputValue === "" || inputValue === null) {
+	if(inputValue === "") {
     	alert("Enter a todo");
     	return false;
   	} else {
@@ -111,6 +113,7 @@ function saveTodosLocalstorage(todo) {
 
 function displayOnPage() {
 	let list = JSON.parse(localStorage.getItem("list"));
+	console.log(list);
 	
 	list.forEach(function(todo) {
 		const listItm = document.createElement("LI");
@@ -123,7 +126,6 @@ function displayOnPage() {
 	  	listItm.appendChild(inputCheckBox);
 	  	listItm.appendChild(inputValueContent);
 	});
-
 };
 
 function deleteChecked() {
@@ -137,7 +139,7 @@ function deleteChecked() {
 			localStorage.setItem("list", JSON.stringify(list));
 			listTexts[i].remove();	
 		}
-	}
+	};
 };
 
 
