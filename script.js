@@ -54,7 +54,7 @@ const getTodos = () => {
     };  
 };
 
-getTodos();
+window.onload = getTodos();
 
 const createList = (todos) => {
 	let list = [];
@@ -80,7 +80,7 @@ function addToList(event) {
 	inputValue = document.getElementById("inputTodo").value;	
 	
 	if(inputValue === "") {
-    	alert("Enter a todo");
+    	alert("Enter a ToDo");
     	return false;
   	} else {
 		const listItm = document.createElement("LI");
