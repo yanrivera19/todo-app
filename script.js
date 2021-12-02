@@ -6,34 +6,34 @@ select the <ul> list from the HTML file by its id name. The todos will be added 
 this <ul>.
 Step 2: Create a function called getTodos that will fetch the API using axios if the array in the localstorage is null or empty. What this means is that, on page load,
 if the array in the localstorage is null, it will fetch the API to get the "todos" resources from it, and if there are no errors, the response of the "get" method 
-used will call the createList function previously defined with the response date in its parameter. If the previous condition is not met, the function will call the 
-displayOnPage function, that will display the values stored in the localstorage inside of the <ul>. Then, call this function (getTodos).
+used will call the createList function with the response date in its parameter. If the previous condition is not met, the function will call the 
+displayOnPage function, that will display the values stored in the localstorage inside of the <ul>. Then, call this function (getTodos) on page load.
 Step 3: Create a function expression called createList that takes in "todos" as its parameter. 
 This function will create a set of elements for each "todo" in the API (JSON Placeholder). The parameter 
 "todos" refers to the response data that you receive when making a "get" request to the API if there are no errors in the request. When this function gets executed, it will 
 display on the page load these elements with the response data that we want in them ("title" property). It will also save the response data that we want in the localstorage.
 Step 4: Create a function called addToList that creates a set of elements on which the todos submitted on the input 
-box will be displayed. This function gets executed whenever an input is submitted, and takes in an event as its parameter.
-It will first check if the input submitted has a valid value. If it doesn't have one, it will display an alert message asking the user
-to enter a todo. If it does have one, it will create an a <li> and a checkbox button for each of the input values submitted,
+box by the users will be displayed. This function gets executed whenever an input is submitted by clicking the "Add" button, and takes in an event as its parameter.
+It will first check if the input submitted has a valid value, meaning that something was actually written. If it doesn't have one, it will display an alert message asking the user
+to enter a todo. If it does have one, it will create a <li> element and a checkbox button for each of the input values submitted,
 it will call a function called savetodos that will save these input values to the localstorage, and whenever an input gets submitted,
 the input box will be cleared.
-Step 5: Create a function called saveTodosLocalstorage that takes in a todo as a parameter. This todo refers to the input value that was submitted
+Step 5: Create a function called saveTodosLocalstorage that takes in a todo as a parameter. This todo refers to the input value that was submitted by the user
 and evaluated on the addToList function. The savetodos function is called inside the addToList function and takes in as its parapeter the
-input value being evaluated. The savetodos function first checks if the local storage is empty. If it is, it returns an empty array called "list". 
-If it is not, it returns the value/s of the specified key from the storage by using the JSON.parse method, and the value gets added into the "list" 
+input value being evaluated. The savetodos function first checks if the local storage is empty. If it is, it creates an empty array called "list". 
+If it is not, it returns the value/s of the specified key from the storage by using the JSON.parse method, and the value gets added to the "list" 
 array. In this case, the name of the localstorage key is also "list".The function will also make every todo or input value that gets passed in be 
-inserted inside of the "list" array by using the push method, and later they will be stored to the localstorage as a string, by using the JSON.stringify
+inserted to the "list" array by using the push method, and later they will be stored to the localstorage as a string, by using the JSON.stringify
 method.
 Step 6: Create a function called displayOnPage, that firstly defines a variable called "list" with the retrieval of the values in the localstorage as an array.
-To this array, use the forEach method to run an annonymous function for each of the individual item in the "list" array. This function will take 
+To this array, use the forEach method to run an annonymous function for each of the individual todos in the "list" array. This function will take 
 in a todo as its parameter. This "todo" refers to each individual item of the array. For each individual item, the same things that were created on the addToList
-function will be created, and the values from the localstorage will be appended to them.
+function will be created, and the values from the localstorage will be displayed in them.
 Step 7: Create a function called deleteChecked that removes from the UI and the local storage the selected list items on the UI. The list items are selected by
 the checking of the checkbox next to them, and then are removed from the page and localstorage by clicking the trash bin button that is underneath the input box on the
 UI. In order to do this, the checkboxes have to be looped through with a for looped. If the current checkbox being looped is checked, the localstorage values are retrieved 
-as an array and, with the use of the splice method, remove the current checkbox ([i]) from the array.Then, update the localstorage by storing the modified array
-into it, and finally remove the checkbox from the UI using the the remove method.
+as an array and, with the use of the splice method, remove the current index ([i]) from the array. Then, update the localstorage by storing the modified array
+into it, and finally remove the checkbox and list item from the UI using the the remove method.
 */
 
 let inputValue = document.getElementById("inputTodo").value;
@@ -115,7 +115,7 @@ function displayOnPage() {
 	let list = JSON.parse(localStorage.getItem("list"));
 	console.log(list);
 	
-	list.forEach(function(todo) {
+	list.forEach(todo => {
 		const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";
 		todoList.appendChild(listItm);
