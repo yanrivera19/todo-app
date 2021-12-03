@@ -62,13 +62,16 @@ const createList = (todos) => {
     todos.forEach(todo => {        
 	    const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";		
+		
 		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input mr-3";
 		inputCheckBox.type = "checkbox"
+		
 		const inputValueContent = document.createTextNode(todo.title);
 		listItm.appendChild(inputCheckBox);
 		listItm.appendChild(inputValueContent);
 	    todoList.appendChild(listItm);
+	    
 	    list.push(todo.title);	    
     });
     localStorage.setItem("list", JSON.stringify(list));
@@ -86,13 +89,16 @@ function addToList(event) {
 		const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";
 		todoList.appendChild(listItm);
+		
 		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input";
 		inputCheckBox.type = "checkbox"
+		
 		inputValue = document.getElementById("inputTodo").value;	
 		const inputValueContent = document.createTextNode(inputValue);
 	  	listItm.appendChild(inputCheckBox);
 	  	listItm.appendChild(inputValueContent);
+	  	
 	  	saveTodosLocalstorage(inputValue);
 	  	document.getElementById("inputTodo").value = ""; 	  	
   	} 
@@ -119,9 +125,11 @@ function displayOnPage() {
 		const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";
 		todoList.appendChild(listItm);
+		
 		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input mr-3";
 		inputCheckBox.type = "checkbox"
+		
 		const inputValueContent = document.createTextNode(todo);
 	  	listItm.appendChild(inputCheckBox);
 	  	listItm.appendChild(inputValueContent);
