@@ -33,7 +33,7 @@ into it, and finally remove the checkbox from the UI using the the remove method
 let inputValue = document.getElementById("inputTodo").value;
 let todoList = document.getElementById("todoList");
 
-displayOnPage();
+window.onload = displayOnPage();
 
 function addToList(event) {
 	event.preventDefault();
@@ -47,13 +47,16 @@ function addToList(event) {
 		const listItm = document.createElement("LI");
 		listItm.className = "list-group-item";
 		todoList.appendChild(listItm);
+		
 		const inputCheckBox = document.createElement("INPUT");
 		inputCheckBox.className = "delete-box form-check-input";
 		inputCheckBox.type = "checkbox"
 		inputValue = document.getElementById("inputTodo").value;	
+		
 		const inputValueContent = document.createTextNode(inputValue);
 	  	listItm.appendChild(inputCheckBox);
 	  	listItm.appendChild(inputValueContent);
+
 	  	saveTodosLocalstorage(inputValue);
 	  	document.getElementById("inputTodo").value = ""; 	  	
   	} 
@@ -75,15 +78,17 @@ function displayOnPage() {
 	const list = JSON.parse(localStorage.getItem("list"));
 
 	list.forEach(function(todo) {
-	const listItm = document.createElement("LI");
-	listItm.className = "list-group-item";
-	todoList.appendChild(listItm);
-	const inputCheckBox = document.createElement("INPUT");
-	inputCheckBox.className = "delete-box form-check-input mr-3";
-	inputCheckBox.type = "checkbox"
-	const inputValueContent = document.createTextNode(todo);
-  	listItm.appendChild(inputCheckBox);
-  	listItm.appendChild(inputValueContent);
+		const listItm = document.createElement("LI");
+		listItm.className = "list-group-item";
+		todoList.appendChild(listItm);
+
+		const inputCheckBox = document.createElement("INPUT");
+		inputCheckBox.className = "delete-box form-check-input mr-3";
+		inputCheckBox.type = "checkbox"
+
+		const inputValueContent = document.createTextNode(todo);
+	  	listItm.appendChild(inputCheckBox);
+	  	listItm.appendChild(inputValueContent);
 	});
 };
 
